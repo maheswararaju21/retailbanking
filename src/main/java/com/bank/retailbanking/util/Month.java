@@ -1,4 +1,4 @@
-package com.bank.retailbanking.constants;
+package com.bank.retailbanking.util;
 
 import java.util.Calendar;
 

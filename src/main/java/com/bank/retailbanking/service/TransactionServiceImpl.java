@@ -8,7 +8,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bank.retailbanking.constants.Month;
 import com.bank.retailbanking.dto.AccountSummaryResponse;
 import com.bank.retailbanking.dto.AccountSummaryResponsedto;
 import com.bank.retailbanking.entity.Customer;
@@ -17,6 +16,7 @@ import com.bank.retailbanking.entity.CustomerTransactions;
 import com.bank.retailbanking.repository.CustomerAccountDetailsRepository;
 import com.bank.retailbanking.repository.CustomerRepository;
 import com.bank.retailbanking.repository.CustomerTransactionsRepository;
+import com.bank.retailbanking.util.Month;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,10 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
 				Integer transactionMonth = transactionHistory.getTransactionDate().getMonthValue();
 
 				int actualMonthNumber = Month.monthStringToInt(month);
-				String m = Integer.toString(actualMonthNumber);
-				if (actualMonthNumber < 10)
-					m = "0" + Integer.toString(+actualMonthNumber);
-
+				
 
 				if (actualMonthNumber == transactionMonth) {
 					AccountSummaryResponse accountSummaryResponse = new AccountSummaryResponse();
