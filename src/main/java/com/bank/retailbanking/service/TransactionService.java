@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Optional;
 
 import com.bank.retailbanking.dto.AccountSummaryResponsedto;
+import com.bank.retailbanking.exception.TransactionException;
 
 /**
  * The {@code TransactionService} interface provides the methods for the
@@ -15,5 +16,5 @@ public interface TransactionService {
 	/*
 	 * this method reads two parameters which are customerId and month from the controller
 	 */
-	Optional<AccountSummaryResponsedto> fetchTransactionsByMonth(Long customerId, String month) throws ParseException;
+	Optional<AccountSummaryResponsedto> fetchTransactionsByMonth(Long customerId, String month) throws ParseException, TransactionException;
 }

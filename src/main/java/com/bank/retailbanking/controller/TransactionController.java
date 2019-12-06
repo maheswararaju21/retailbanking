@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.retailbanking.dto.AccountSummaryResponsedto;
+import com.bank.retailbanking.exception.TransactionException;
 import com.bank.retailbanking.service.TransactionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,8 @@ public class TransactionController {
 
 	@GetMapping("{customerId}/{month}")
 	public ResponseEntity<Optional<AccountSummaryResponsedto>> fetchTransactionsByMonth(
-			@RequestParam("customerId") Long customerId, @RequestParam("month") String month) throws ParseException {
+			@RequestParam("customerId") Long customerId, @RequestParam("month") String month)
+			throws ParseException, TransactionException {
 		log.info("fetch fetchTransactionsByMonth() is called");
 		Optional<AccountSummaryResponsedto> accountSummaryResponsedtoList = transactionService
 				.fetchTransactionsByMonth(customerId, month);
@@ -48,6 +50,7 @@ public class TransactionController {
 		accountSummaryResponsedtoList.get().setStatusCode(HttpStatus.OK.value());
 		accountSummaryResponsedtoList.get().setStatusMessage("Success");
 		return new ResponseEntity<>(accountSummaryResponsedtoList, HttpStatus.OK);
+
 	}
 
 }
